@@ -1,0 +1,7 @@
+ git config --global user.name "Boli2Eliel"
+ git config --global user.email "popaulnzongo@gmail.com"
+ git config --global push.default matching
+ git config --global alias.co checkout
+ git init
+ git add .
+ git commit -am 'Initial Commit'
