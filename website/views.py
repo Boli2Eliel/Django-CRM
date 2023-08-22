@@ -1,12 +1,20 @@
-from django.shortcuts import render, redirect
+import datetime
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import CreateView
+
+from client.models import Client
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
 
 def home(request):
-	records = Record.objects.all()
+	records = Record.objects.filter(created_by=request.user, converted_to_client=False)
 	# Check to see if logging in
 	if request.method == 'POST':
 		username = request.POST['username']
@@ -72,12 +80,26 @@ def delete_record(request, pk):
 		messages.success(request, "You Must Be Logged In To Do That...")
 		return redirect('home')
 
+class RecordCreateView(LoginRequiredMixin,CreateView):
+	model = Record
+	form_class = AddRecordForm
+	success_url = reverse_lazy('home')
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = 'Ajout prospect'
+		return context
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.created_by = self.request.user
+		self.object.save()
+		return redirect(self.get_success_url())
 
 def add_record(request):
 	form = AddRecordForm(request.POST or None)
 	if request.user.is_authenticated:
 		if request.method == "POST":
 			if form.is_valid():
+
 				add_record = form.save()
 				messages.success(request, "Record Added...")
 				return redirect('home')
@@ -99,3 +121,32 @@ def update_record(request, pk):
 	else:
 		messages.success(request, "You Must Be Logged In...")
 		return redirect('home')
+
+class ConvertToClientView(LoginRequiredMixin,View):
+	def get(self, request, *args, **kwargs):
+		pk = self.kwargs.get('pk')
+		record = get_object_or_404(Record, created_by=request.user, pk=pk)
+		client = Client.objects.create(
+			firm=record.firm,
+			first_name=record.first_name,
+			last_name=record.last_name,
+			email=record.email,
+			phone=record.phone,
+			address=record.address,
+			created_by=request.user,
+			zipcode=record.zipcode,
+			city=record.city,
+			country=record.country,
+			converted_date=datetime.datetime.now()
+		)
+		record.converted_to_client = True
+		record.save()
+		messages.success(request, 'Le prospect a été converti en client avec succès!')
+
+		return redirect('home')
+
+
+# --------------- Show message and redirect ---------------
+
+
+

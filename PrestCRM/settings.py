@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'prestcrm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'prestCRM',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

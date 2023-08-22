@@ -1,9 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django_countries.fields import CountryField
 
 
 class Client(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='clients', on_delete=models.CASCADE, verbose_name='Créé par')
     firm = models.CharField(max_length=50, verbose_name="Raison Sociale")
     first_name = models.CharField(max_length=50, verbose_name="Prénom")
     last_name = models.CharField(max_length=50, verbose_name="Nom")
