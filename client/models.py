@@ -2,7 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 
 
-class Record(models.Model):
+class Client(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     firm = models.CharField(max_length=50, verbose_name="Raison Sociale")
     first_name = models.CharField(max_length=50, verbose_name="Prénom")
@@ -13,7 +13,6 @@ class Record(models.Model):
     zipcode = models.CharField(max_length=20, verbose_name="BP", blank=True, null=True)
     city = models.CharField(max_length=50, verbose_name="Ville")
     country = CountryField(blank_label='(Choisir Pays)', verbose_name="Pays", )
-    converted_to_client = models.BooleanField(default=False, verbose_name="Convertir en client")
     converted_date = models.DateTimeField(null=True, blank=True, verbose_name="Date_conversion_en_client")
 
     def __str__(self):
