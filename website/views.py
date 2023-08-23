@@ -27,7 +27,7 @@ def login_user(request):
             return redirect('dashboard')
         else:
             messages.success(request, "There Was An Error Logging In, Please Try Again...")
-            return redirect('home')
+            return redirect('login')
     else:
         return render(request, 'home.html')
 
@@ -180,7 +180,7 @@ class ConvertToClientView(LoginRequiredMixin, View):
         record.save()
         messages.success(request, 'Le prospect a été converti en client avec succès!')
 
-        return redirect('home')
+        return redirect('record_list')
 
 # --------------- Show message and redirect ---------------
 
