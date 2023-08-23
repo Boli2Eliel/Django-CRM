@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+  <h2 class="text-gray-800"><i class="far fa-address-card"></i> Details Client</h2>
+  <hr>  
+</div>
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{ client.first_name }} 
+		{{ client.last_name }}</strong>
+  </div>
+  <div class="card-body">
+
+
+
+<p class="card-text">
+<strong>Email: </strong>{{ client.email }}</p>
+
+<p class="card-text">
+<strong>Téléphone: </strong>{{ client.phone }}
+</p>
+
+<p class="card-text">
+<strong>Adresse: </strong>{{ client.address }}</p>
+
+<p class="card-text">
+<strong>Ville: </strong>{{ client.city }}</p>
+
+<p class="card-text">
+<strong>Pays: </strong>{{ client.country}}</p>
+
+<p class="card-text">
+<strong>B.P: </strong>{{ client.zipcode }}</p>
+
+<p class="card-text">
+<strong>Create At: </strong>{{ client.created_at }}</p>
+
+<p class="card-text">
+<strong>Client ID: </strong>{{ client.id }}</p>
+    
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'clients:list' %}" class="btn btn-secondary">Retour</a>
+
+<a href="#" class="btn btn-danger">Supprimer</a>
+
+<a href="#" class="btn btn-secondary">MàJ Prospect</a>
+		
+
+{% endblock %}

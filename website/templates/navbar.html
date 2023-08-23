@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: rgba(121,28,248,0.9)">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">PrestCRM</a>
+    <a class="navbar-brand" href="{% url 'dashboard' %}">PrestCRM</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,8 +9,13 @@
         
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_record' %}">Add Record</a>
+          <a class="nav-link" href="{% url 'record_list' %}">Records</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'clients:list' %}">Clients</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
@@ -20,7 +25,7 @@
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Login</a>
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>        
         {% endif %}
         

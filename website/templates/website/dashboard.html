@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <h2 class="text-gray-800"> <i class="fas fa-chart-line "></i> Dashboard </h2>
+    <hr>    
+</div>
+<!-- Facts Start -->
+<div class="container-fluid my-5 py-1 text-center" style="background-color: rgba(189, 10, 28, 0.6); border-radius: 35px;">
+    <div class="row pt-5">
+        
+        {% if user.is_authenticated and user.is_superuser %}
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-users mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{total_record_count_all}}</h4>
+            <h6 class="text-white m-0">Total Prospects</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-shield-alt mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{total_clients_count_all}}</h4>
+            <h6 class="text-white m-0">Total Clients</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-user-shield mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{converted_to_clients}}</h4>
+            <h6 class="text-white m-0">Prospects convertis en clients</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-award mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">25</h4>
+            <h6 class="text-white m-0">Award Winning</h6>
+        </div>
+
+        {% else %}
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-users mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{total_record_count_user}}</h4>
+            <h6 class="text-white m-0">Total Prospects</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-shield-alt mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{total_clients_count_user}}</h4>
+            <h6 class="text-white m-0">Total Clients</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-user-shield mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">{{converted_to_clients_user}}</h4>
+            <h6 class="text-white m-0">Prospects convertis en clients</h6>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <h5 class="fa fa-award mb-4 d-inline-flex align-items-center justify-content-center border rounded-circle text-white" style="width: 50px; height: 50px;"></h5>
+            <h4 class="display-4 text-white mb-3" data-toggle="counter-up">25</h4>
+            <h6 class="text-white m-0">Award Winning</h6>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+<!-- Facts End -->
+{% endblock %}

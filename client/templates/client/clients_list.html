@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <h2 class="text-gray-800"><i class="fa fa-shield-alt"></i> Clients</h2>
+    <hr>
+
+    <a href="{% url 'clients:add' %}" class="inline-block py-2 px-6 bg-indigo-700 rounded-xl mt-6">Ajout Client</a>
+    
+</div>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Pays</th>
+            <th scope="col">BP</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">ID</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        {% for client in object_list %}
+            <tr>
+                <td>{{ client.first_name }} {{ client.last_name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phone }}</td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.city }}</td>
+                <td>{{ client.country}}</td>
+                <td>{{ client.zipcode }}</td>
+                <td>{{ client.created_at }}</td>
+                <td><a href="{% url 'clients:detail' client.id %}">{{ client.id }}</a></td>
+            </tr>
+        {% endfor %}
+
+ 
+
+	
+	</tbody>
+</table>
+
+{% endblock %}
