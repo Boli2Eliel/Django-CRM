@@ -13,19 +13,21 @@
           <a class="nav-link" href="{% url 'record_list' %}">Records</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'clients:list' %}" style="margin-right: 30px;">Clients</a>
+        <li class="nav-item ">
+          <a class="nav-link" href="{% url 'clients:list' %}" style="margin-right: 25px;">Clients</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link disabled"style="border-left: 1px solid white; href="#">logged in as: {{user.username}}</a>
-        </li>
-        
         <li class="nav-item" >
-          <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-power-off text-danger"></i></a>
+          <a class="nav-link" href="{% url 'logout' %}"  style="margin-right: 150px;"><i class="fas fa-power-off text-danger"></i></a>
         </li> 
 
-        
+        <li class="nav-item ">
+          <a class="nav-link disabled" style="margin-right:0px;">logged in as:</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{user.username}}</a>
+        </li>      
+          
     
       </ul> 
 
