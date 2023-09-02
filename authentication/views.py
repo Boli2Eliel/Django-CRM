@@ -3,10 +3,14 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+
+from userprofile.forms import UserUpdateForm, UserUpdateSuiteForm
 from .forms import LoginForm, SignUpForm
+from .models import Account
 
 
 def login_view(request):
@@ -46,12 +50,32 @@ def register_user(request):
 
             msg = 'Utilisateur créé avec succès!'
             success = True
-
-            # return redirect("/login/")
-
+            return redirect("dashboard")
         else:
             msg = 'Formulaire non valide'
+        return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
     else:
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+def users_list(request):
+    accounts = Account.objects.all()
+    return render(request, "accounts/accounts_list.html", {"accounts": accounts})
+
+@login_required()  # "LOGIN_URL = 'user-login'" # for decorators a été ajouté dans le settings
+def user_update(request,pk):
+    current_user = Account.objects.get(id=pk)
+    if request.method == 'POST':
+        user_form = UserUpdateSuiteForm(request.POST or None, instance=current_user)
+        if user_form.is_valid :
+            # if profile_form.is_valid:
+            user_form.save()
+            return redirect('accounts')
+    else:
+        user_form = UserUpdateSuiteForm(instance=current_user)
+
+    context = {
+        'user_form': user_form,
+    }
+    return render(request, 'accounts/account_update.html', context)

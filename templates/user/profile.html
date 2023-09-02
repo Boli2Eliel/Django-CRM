@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!--Profile-->
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header font-weight-bold fs-5 text-secondary text-uppercase" style="background-color: rgb(255, 255, 255);">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">
+                                <span class="fa fa-user-circle fa-2x"></span>
+                            </span>&nbsp;&nbsp;
+                            {{user.username}} | <a href="#" class="float-right ml-5"> <span class="" style="font-size: 12px; font-weight:normal; margin-left: 360px;"><i class="fa fa-home"></i> </span> </a>
+                        </div>  
+                        
+                    </div>
+                    <div class="card-body bg-dark">
+                        <div class="row ">
+                            <div class="col-md-8 ">
+                                <!--span class="h4"> Profile Information</!--span> <a class="btn btn-dark btn-sm float-right" href="{% url 'user-profile-update' %}" data-toggle="modal" data-target="#addModal">Edit</!--a-->
+                                <span class="h6 fs-italic " style="font-style: italic;"> Profile Informations</span> <a class="btn btn-light btn-sm float-right" href="{% url 'user-profile-update' %}"><span class="fa fa-pencil"></span> Modifier</a>
+                                <hr>
+                                <table class="table  table-borderless ">
+                                    <tbody class="">
+                                        <tr>
+                                            <th scope="row">Nom(s):</th>
+                                            <td>{{user.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Prénom(s):</th>
+                                            <td>{{user.first_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fonction:</th>
+                                            <td>{{user.job_function}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email:</th>
+                                            <td>{{user.email}}</td>
+                                        </tr>
+                                        
+                                        <!--tr>
+                                            <th scope="row">Adresse:</th>
+                                            <td>{{user.address}}</td>
+                                        </!--tr-->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-thumbnail fa-image" src="{{user.profile_image.url}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--EndProfile-->
+
+<!-- AddModal 
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header btn-success">
+        <h5 class="modal-title" id="addModalLabel"><i class="fas fa-plus "></i>&nbsp;&nbsp;Modification Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+            <form method="POST" class="p-5">
+                {% csrf_token%}
+                {{profile_form|crispy}}
+                <a href="{% url 'user-profile' %}" class="btn btn-secondary" >Annuler</a>
+                <input type="submit" class="btn btn-success" value="Modifier">
+            </form>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+
+
+{% endblock %}

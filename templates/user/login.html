@@ -1,0 +1,25 @@
+{% extends 'partials/logon.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="login-logo mt-5 offset-5">
+    <a href="#" class="text-white fs-1" style="text-decoration:none ; font-size:30px;"><b>IT'WATCH<i class=" text-white fas fa-eye"></i></b></a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class=" p-3 bg-dark ">
+                <p class="login-box-msg mt-7 text-secondary">Connectez-vous pour démarrer votre session</p>
+                <hr class="bg-white">
+                <form class="text-secondary" method="POST">
+                    {% csrf_token%}
+                    {{ form|crispy}}
+                    <input class="btn btn-outline-success" type="submit" value="Acceder">
+                    <a href="{% url 'password_reset' %}" class="mx-4"> Mot de passe oublié ?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

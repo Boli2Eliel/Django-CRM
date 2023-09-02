@@ -2,7 +2,7 @@
 {% block content %}
 
 <div>
-    <h2 class="text-gray-800 "><i class="fa fa-users "></i> Prospects</h2>
+    <h2 class="text-gray-800 "><i class="fa fa-users text-primary"></i> Prospects</h2>
     <hr>
     <a href="{% url 'add_record' %}" class="inline-block py-2 px-6 bg-indigo-700 rounded-xl mt-6 btn btn-primary">Ajout prospect</a> 
 </div>
@@ -16,6 +16,7 @@
 <table class="table table-striped table-hover table-bordered" style="font-size: 13px;">
     <thead class="table-dark">
         <tr>
+            <th scope="col"></th>
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
             <th scope="col">Téléphone</th>
@@ -24,7 +25,6 @@
             <th scope="col">Pays</th>
             <th scope="col">BP</th>
             <th scope="col">Crée le</th>
-            <th scope="col">ID</th>
         </tr>
     </thead>
 
@@ -32,6 +32,7 @@
 
         {% for record in records %}
             <tr>
+                <td><a href="{% url 'record' record.id %}"><i class="fa fa-eye"></i></a></td>
                 <td>{{ record.first_name }} {{ record.last_name }}</td>
                 <td>{{ record.email }}</td>
                 <td>{{ record.phone }}</td>
@@ -40,7 +41,6 @@
                 <td>{{ record.country }}</td>
                 <td>{{ record.zipcode }}</td>
                 <td>{{ record.created_at }}</td>
-                <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
             </tr>
         {% endfor %}
     </tbody>

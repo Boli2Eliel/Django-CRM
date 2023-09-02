@@ -1,0 +1,58 @@
+{% extends 'partials/logon.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'partials/nav_logout.html' %} <!-- Ce tag nous permet d'inclure les pages componennt qui sont ds le dossier 'partials'-->
+<div class="container " style="max-width: 60%">
+
+    <section >
+      <div class="container justify-content-center ">
+        <div class="row ">
+          <div class="pt-lg-2 pb-lg-5">
+            <h1 class="fonty fs-1 text-white">IT'WATCH <i class="fa-solid fa-eye"></i></h1>
+            <h2 class="fonty text-white">Gestion du parc Informatique</h2>
+          </div>
+          <p class="fonty text-white">Une bonne gestion du parc informatique d’entreprise permet de prévenir les défaillances et de réduire les coûts de fonctionnement du système informatique. <br>La gestion de parc informatique assure sa pérennité et constitue un enjeu majeur pour votre entreprise.<br>La gestion de parc informatique regroupe un ensemble de tâches visant à entretenir, développer et optimiser l’ensemble des ressources informatiques de l’entreprise.</p>
+          <div class=" mt-lg-4">
+          </div>
+          
+
+      <br><br>
+
+        </div>
+      </div>
+                
+    
+    </section>
+
+        <!--div class="jumbotron text-center">
+            <h1>AMC ASSURANCES </h1>
+            <p>Gestion Parc INFORMATIQUE</p>
+            <form class="form-inline">
+              <div class="input-group"></div>
+            </form>
+          </div-->
+</div>
+
+<!--SweetAlert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+   {% if user.is_authenticated %}
+
+    {% else %}
+       /*swal.fire('{{msg}}');*/
+       Swal.fire({
+           position: 'top-end',
+           icon: 'info',
+           title: "Dans l'espoir de vous revoir bientôt",
+           showConfirmButton: false,
+           timer: 5500
+           })
+
+  
+   {% endif %}
+</script>
+
+{% endblock content %}

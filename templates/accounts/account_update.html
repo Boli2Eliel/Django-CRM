@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!--Profile-->
+        <div class="col-md-6 offset-md-3">
+
+            <h2><i class="far fa-edit"></i>&nbsp;Mise à jour de l'utilisateur</h2>
+            <hr>
+
+            <div class="card">
+                <div class="card-header text-secondary font-weight-bold fs-5 bg-light ">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">
+                            <img class="img-thumbnail fa-image" src="#" alt="" style="width: 40px;">
+                        </span>&nbsp;&nbsp;
+                        {{account.username}} |
+                    </div>  
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="h6" style="font-style: italic;"> Profile Informations</span> 
+                            <hr>
+                            <form  method="POST" enctype="multipart/form-data" class=""> 
+                                <div class="form-control mb-4 text-light bg-dark" style="background-color: rgba(10, 2, 2, 0.1);">
+                                        {% csrf_token %}
+                                        {{user_form | crispy}}
+                                </div>
+                                <a href="{% url 'accounts' %}" class="btn btn-danger mr-5" >Annuler</a>
+                                <input type="submit" class="btn btn-success ml-5" value="Modifier">
+                            </form>
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--EndProfile-->
+
+
+    
+
+{% endblock %}
