@@ -81,10 +81,17 @@ def dashboard(request):
 
     return render(request, "website/dashboard.html", context)
 
+
 @login_required
 def list_record(request):
+    records_all = Record.objects.filter(converted_to_client=False)
     records = Record.objects.filter(created_by=request.user, converted_to_client=False)
-    return render(request, 'website/record_list.html', {'records': records})
+
+    context = {
+        'records': records,
+        'records_all': records_all
+    }
+    return render(request, 'website/record_list.html', context)
 
 
 @login_required

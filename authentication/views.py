@@ -26,7 +26,7 @@ def login_view(request):
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, "Bienvenue à PrestCRM App!")
+                messages.success(request, "Bienvenue à prestcrm App!")
                 return redirect("dashboard")
             else:
                 msg = 'Informations erronées! Merci de vérifier et réessayer.'

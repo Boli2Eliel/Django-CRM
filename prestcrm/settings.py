@@ -31,14 +31,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+# Thirds
     'crispy_forms',
     'crispy_bootstrap5',
+    #'django_keycloak.apps.KeycloakAppConfig',
 
     # MyApps
     'website',
     'client',
     'userprofile',
     'authentication',
+
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Thirds
+    #'django_keycloak.middleware.BaseKeycloakMiddleware',
 ]
 
 ROOT_URLCONF = 'prestcrm.urls'
@@ -81,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Monboli1309@@',
         'HOST': 'localhost',
         'PORT': '3306',
     }
